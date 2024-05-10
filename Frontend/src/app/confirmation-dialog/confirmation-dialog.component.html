@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Bill</h2>
+<mat-list >
+    <mat-list-item class="full-height" *ngFor="let item of cart">
+        <span matListItemTitle>
+            {{item.name}}
+        </span >
+        <span matListItemLine>
+            Quantity: {{item.quantity}}
+        </span >
+        <span matListItemLine>
+            Price: {{item.price}}
+        </span >
+        <mat-divider [inset]="true"></mat-divider>
+    </mat-list-item>
+</mat-list>
+<div>{{user.address}}</div>
+<div>{{date}}</div>
+<div>{{total}}</div>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Back</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="confirm()">Confirm</button>
+  </mat-dialog-actions>

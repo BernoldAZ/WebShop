@@ -18,11 +18,11 @@
                 <span matListItemLine>
                     Price: {{item.price}}
                 </span >
-                <button mat-button color="warn"(click)="remove()">Delete</button>
+                <button mat-button color="warn"(click)="remove(item)">Delete</button>
                 <mat-divider [inset]="true"></mat-divider>
             </mat-list-item>
         </mat-list>
-          <button mat-button >Confirm and pay</button>
+          <button mat-button (click)="openDialog()" >Confirm and pay</button>
       </mat-card-content>
     </mat-card>
   </div>

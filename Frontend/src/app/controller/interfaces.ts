@@ -32,3 +32,12 @@ export interface Product {
     value: number, 
     viewValue: String
   }
+
+  export interface Shoppings{
+    id : number,
+    date: String,
+    total : number,
+    user_name : String,
+    address : String
+    items : CartProduct[]
+  }

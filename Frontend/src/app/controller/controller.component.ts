@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product,CartProduct,User } from './interfaces';
+import { Product,CartProduct,User, Shoppings} from './interfaces';
 
 @Component({
   selector: 'app-controller',
@@ -70,6 +70,17 @@ export class ControllerComponent {
     }
   }
 
+  orderConfirmed(){
+    //submit to backend
+    this.cart = []
+    this.items_cart = 0;
+  }
+
+  getHistory() : Shoppings[]{
+    //get history from backend for the user
+    return PREVIUS_BIILS;
+  }
+
 }
 
 
@@ -83,4 +94,73 @@ const PRODUCT_DATA: Product[] = [
   {id: 6, name: 'FIFA24', price: 300, stock: 10,description : "", photo : "https://www.pointekonline.com/wp-content/uploads/2022/09/fifa-24.jpg"},
   {id: 7, name: 'Mario Kart', price: 300, stock: 10,description : "", photo : "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_85080232?x=536&y=402&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=536&ey=402&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=536&cdy=402"},
   {id: 8, name: 'Gamer Chair', price: 300, stock: 10,description : "", photo : "https://es.thermaltake.com/media/catalog/product/cache/023a745bb14092c479b288481f91a1bd/x/f/xfit_black-white01.jpg"},
+];
+
+const PREVIUS_BIILS : Shoppings[] = [
+  {id : 1,  date : "5/11/2024", total : 1500, user_name : 'Test', address : 'Test Address', 
+  items : [
+    {
+        "id": 1,
+        "name": "Nintendo Switch",
+        "quantity": 1,
+        "price": 300
+    },
+    {
+        "id": 3,
+        "name": "Computer",
+        "quantity": 1,
+        "price": 300
+    },
+    {
+        "id": 7,
+        "name": "Mario Kart",
+        "quantity": 1,
+        "price": 300
+    },
+    {
+        "id": 6,
+        "name": "FIFA24",
+        "quantity": 1,
+        "price": 300
+    },
+    {
+        "id": 5,
+        "name": "Xbox one",
+        "quantity": 1,
+        "price": 300
+    }
+]},
+{id : 2,  date : "5/11/2024", total : 3500, user_name : 'Test', address : 'Test Address', 
+  items : [
+    {
+        "id": 1,
+        "name": "Nintendo Switch",
+        "quantity": 1,
+        "price": 300
+    },
+    {
+        "id": 3,
+        "name": "Computer",
+        "quantity": 1,
+        "price": 300
+    },
+    {
+        "id": 7,
+        "name": "Mario Kart",
+        "quantity": 1,
+        "price": 300
+    },
+    {
+        "id": 6,
+        "name": "FIFA24",
+        "quantity": 1,
+        "price": 300
+    },
+    {
+        "id": 5,
+        "name": "Xbox one",
+        "quantity": 1,
+        "price": 300
+    }
+]},
 ];
