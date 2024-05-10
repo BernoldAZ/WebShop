@@ -1,0 +1,28 @@
+<div class="login-container">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>
+            <h1> Shopping cart </h1>
+
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list >
+            <mat-list-item class="full-height" *ngFor="let item of cart">
+                <span matListItemTitle>
+                    {{item.name}}
+                </span >
+                <span matListItemLine>
+                    Quantity: {{item.quantity}}
+                </span >
+                <span matListItemLine>
+                    Price: {{item.price}}
+                </span >
+                <button mat-button color="warn"(click)="remove()">Delete</button>
+                <mat-divider [inset]="true"></mat-divider>
+            </mat-list-item>
+        </mat-list>
+          <button mat-button >Confirm and pay</button>
+      </mat-card-content>
+    </mat-card>
+  </div>

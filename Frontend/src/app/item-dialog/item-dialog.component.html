@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{product.id}}: {{product.name}}</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-grid-list cols="2" rowHeight="1:1">
+    <mat-grid-tile>
+      <img mat-card-image src="{{product.photo}}"  class="photo">
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div>
+        {{product.description}}
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <mat-select [(value)]="selectedValue">
+    @for (option of options; track option) {
+      <mat-option [value]="option.value">{{option.viewValue}}</mat-option>
+    }
+  </mat-select>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="buy()">ADD TO CART</button>
+</mat-dialog-actions>

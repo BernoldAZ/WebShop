@@ -1,0 +1,17 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.mat-mdc-card {
+    position: relative;
+    width: 95%;
+}
+
+.photo{
+  width: 75%;
+  height: 75%;
+}
+
+.logout{
+  color: red;
+}

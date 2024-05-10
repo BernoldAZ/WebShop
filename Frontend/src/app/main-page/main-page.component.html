@@ -1,0 +1,48 @@
+<p>
+    <mat-toolbar color="primary">
+
+  
+      <mat-toolbar-row>
+        <span>Amazon 2</span>
+        <input class="form-control" type="text" placeholder="Search" [(ngModel)]="searchText">
+        <span class="example-spacer"></span>
+
+        <button mat-icon-button class="example-icon" (click)="viewCart()">
+            <mat-icon [matBadge]="items_cart" matBadgeColor="warn" fontIcon="shopping_cart" aria-hidden="false"></mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="viewProfile()">
+              <mat-icon>person</mat-icon>
+              <span>Profile</span >
+            </button>
+            <button mat-menu-item (click)="viewHistory()">
+              <mat-icon>history</mat-icon>
+              <span>History</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon color="warn">logout</mat-icon>
+              <span class="logout">Log out</span>
+            </button>
+          </mat-menu>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </p>
+
+  <div class="mat-elevation-z8">
+    <mat-grid-list cols="3" rowHeight="1:1">
+        <mat-grid-tile *ngFor="let e of data | search: searchText" (click)="openDialog(e)">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{e.name}}</mat-card-title>
+                    <mat-card-subtitle>Price: {{e.price}} </mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="{{e.photo}}"  class="photo"> 
+
+            </mat-card>        
+        </mat-grid-tile>
+    </mat-grid-list>
+  
+  </div>
