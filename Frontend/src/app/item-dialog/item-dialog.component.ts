@@ -34,6 +34,12 @@ export class ItemDialogComponent {
   selectedValue: number = 1;
 
   buy(){
+    for(let i=0; i< this.controller.cart.length;i++){
+      if (this.controller.cart[i].id == this.product.id){
+        alert('Item already in the cart');
+        return;
+      }
+    }
     this.controller.cart.push({
       id: this.product.id,
       name : this.product.name,

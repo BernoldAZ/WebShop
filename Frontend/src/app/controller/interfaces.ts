@@ -1,16 +1,17 @@
 export interface Product {
     id: number;
-    name: String;
-    description : String;
+    name: string;
+    description : string;
     price: number;
     stock : number;
-    photo : String; //Link to photo on internet
+    photo : string; //Link to photo on internet
   }
   
   export interface User {
-    name: String;
-    email : String;
-    address: String;
+    name: string;
+    email : string;
+    address: string;
+    type : number;
   }
 
   export interface PreviusBills{
@@ -23,21 +24,21 @@ export interface Product {
 
   export interface CartProduct{
     id: number,
-    name : String,
+    name : string,
     quantity : number,
     price : number
   }
 
   export interface Options{
     value: number, 
-    viewValue: String
+    viewValue: string
   }
 
   export interface Shoppings{
     id : number,
-    date: String,
+    date: string,
     total : number,
-    user_name : String,
-    address : String
+    user_name : string,
+    address : string
     items : CartProduct[]
   }

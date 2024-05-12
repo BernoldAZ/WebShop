@@ -14,14 +14,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { ItemDialogComponent } from '../item-dialog/item-dialog.component';
 import { Product } from '../controller/interfaces';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [MatMenuModule,MatBadgeModule,MatCardModule,MatGridListModule, MatButtonModule, MatDialogModule ,
+  imports: [HttpClientModule,MatMenuModule,MatBadgeModule,MatCardModule,MatGridListModule, MatButtonModule, MatDialogModule ,
             NgFor,MatToolbarModule, MatButtonModule, MatIconModule,FormsModule,SearchPipe],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.css'
@@ -30,9 +30,11 @@ export class MainPageComponent implements OnInit{
 
   controller = ControllerComponent.getInstance();
 
-  constructor(private router: Router, public dialog: MatDialog) { }
+  constructor(private router: Router, public dialog: MatDialog,private http : HttpClient) { 
+    this.data = this.controller.products;
+  }
 
-  data = this.controller.getProducts();
+  data : Product[];
   searchText = '';
   items_cart = this.controller.items_cart;
 
@@ -53,17 +55,19 @@ export class MainPageComponent implements OnInit{
     this.router.navigate(['/cart']);
   }
 
-  ngOnInit(){
+  async ngOnInit(){
     if( ! this.controller.checkLogedIn()){
       this.router.navigate(['/']);
     }
+    await this.controller.getProductsBackend(true,this.http);
+    this.data = this.controller.products;
   }
 
   openDialog(product : Product) {
     const dialogRef = this.dialog.open(ItemDialogComponent,{
       data: { product: product },
-      height: '400px',
-      width: '600px',
+      height: '500px',
+      width: '700px',
     },
   );
 

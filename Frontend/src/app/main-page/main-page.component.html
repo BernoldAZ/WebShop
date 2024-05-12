@@ -3,8 +3,8 @@
 
   
       <mat-toolbar-row>
-        <span>Amazon 2</span>
-        <input class="form-control" type="text" placeholder="Search" [(ngModel)]="searchText">
+        <span>Amazon II</span>
+        <input class="search-container" type="text" placeholder="Search" [(ngModel)]="searchText">
         <span class="example-spacer"></span>
 
         <button mat-icon-button class="example-icon" (click)="viewCart()">
@@ -31,18 +31,15 @@
     </mat-toolbar>
   </p>
 
-  <div class="mat-elevation-z8">
     <mat-grid-list cols="3" rowHeight="1:1">
         <mat-grid-tile *ngFor="let e of data | search: searchText" (click)="openDialog(e)">
-            <mat-card>
+            <mat-card class="customCard">
                 <mat-card-header>
                     <mat-card-title>{{e.name}}</mat-card-title>
-                    <mat-card-subtitle>Price: {{e.price}} </mat-card-subtitle>
+                    <mat-card-subtitle>Price: {{e.price}} € </mat-card-subtitle>
                 </mat-card-header>
-                <img mat-card-image src="{{e.photo}}"  class="photo"> 
+                <img mat-card-image src="{{e.photo}}"  class="imgCard"> 
 
             </mat-card>        
         </mat-grid-tile>
     </mat-grid-list>
-  
-  </div>

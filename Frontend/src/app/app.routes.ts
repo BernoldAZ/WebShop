@@ -5,6 +5,7 @@ import { MainPageComponent} from './main-page/main-page.component';
 import { ProfileComponent} from './profile/profile.component';
 import { HistoryComponent} from './history/history.component';
 import { CartComponent} from './cart/cart.component';
+import { AdminPageComponent} from './admin-page/admin-page.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
@@ -13,4 +14,5 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'history', component: HistoryComponent },
     { path: 'cart', component: CartComponent },
+    { path: 'main-admin', component: AdminPageComponent },
 ];

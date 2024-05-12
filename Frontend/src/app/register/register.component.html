@@ -1,4 +1,5 @@
-<div class="login-container">
+<div class="bg">
+  <div class="login-container">
     <mat-card class="login-card">
       <mat-card-header>
         <mat-card-title>
@@ -8,13 +9,13 @@
       </mat-card-header>
       <mat-card-content>
         <form >
-            <mat-form-field >
+            <mat-form-field class="example-full-width">
               <mat-label>Full Name</mat-label>
               <input matInput  id="Name" matInput [formControl]="nameFormControl" [errorStateMatcher]="matcher">
                 @if (nameFormControl.hasError('required')) {
                     <mat-error>Name is <strong>required</strong></mat-error>
                 }
-            </mat-form-field>
+            </mat-form-field >
             <mat-form-field class="example-full-width">
                 <mat-label>Email</mat-label>
                 <input type="email" id="Email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
@@ -26,14 +27,14 @@
                   <mat-error>Email is <strong>required</strong></mat-error>
                 }
               </mat-form-field>
-            <mat-form-field>
+            <mat-form-field class="example-full-width">
                 <mat-label>Password</mat-label>
                 <input matInput [type]="hide ? 'password' : 'text'" id="Password" [formControl]="passFormControl" [errorStateMatcher]="matcher">
                 @if (passFormControl.hasError('required')) {
                     <mat-error>Password is <strong>required</strong></mat-error>
                 }
               </mat-form-field>
-            <mat-form-field >
+            <mat-form-field class="example-full-width">
             <mat-label>Address</mat-label>
             <input matInput  id="Address" [formControl]="addressFormControl" [errorStateMatcher]="matcher">
             @if (addressFormControl.hasError('required')) {
@@ -42,7 +43,7 @@
             </mat-form-field>
           </form>
           <div>
-            <button mat-button color="primary" (click)="createUser()" 
+            <button mat-flat-button class="buttons" color="primary" (click)="createUser()" 
             [disabled]="(nameFormControl.hasError('required') || emailFormControl.hasError('required') || emailFormControl.hasError('email')
                         || passFormControl.hasError('required') || addressFormControl.hasError('required'))">
                 Submit
@@ -51,3 +52,5 @@
       </mat-card-content>
     </mat-card>
   </div>
+</div>
+

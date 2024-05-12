@@ -7,11 +7,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ControllerComponent} from '../controller/controller.component';
 import { Router } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatCardModule,MatInputModule,MatButtonModule, 
+  imports: [MatCardModule,MatInputModule,MatButtonModule, HttpClientModule,
             MatIconModule,MatFormFieldModule,RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -20,26 +21,32 @@ export class LoginComponent{
   hide = true;
   controller = ControllerComponent.getInstance();
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http : HttpClient) { }
 
   ngOnInit(): void {
   }
 
-  login() {
-    
+  changeHide(){
+    this.hide = !this.hide;
+  }
+
+  async login(){
     var email = (<HTMLInputElement>document.getElementById("Email")).value;
     var pass = (<HTMLInputElement>document.getElementById("Password")).value;
     console.log('Email:', email);
     console.log('Password:', pass);
-    if (this.controller.validateLogin(email,pass)){
+    const validation =  await this.controller.loginUser(email,pass,this.http);
+    console.log(this.controller.user);
+    if (validation){
+      if(this.controller.user.type == 0){ //is admin
+        this.router.navigate(['/main-admin']);
+      }
+      else{
         this.router.navigate(['/main']);
+      }
     }
     else{
       alert('Invalid credentials');
     }
-  }
-
-  changeHide(){
-    this.hide = !this.hide;
   }
 }

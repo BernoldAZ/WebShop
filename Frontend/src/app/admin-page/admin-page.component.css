@@ -1,0 +1,87 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.mat-mdc-card {
+    position: relative;
+    width: 95%;
+}
+
+.photo{
+  width: 75%;
+  height: 75%;
+}
+
+.margin-top{
+  margin-top: 5%;
+}
+.margin-bot{
+  margin-bottom: 5%;
+}
+
+.logout{
+  color: red;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-card {
+  max-width: 400px;
+  width: 100%;
+  align-content: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+
+.bg {
+  /* The image used */
+  background-image: url("https://t4.ftcdn.net/jpg/02/32/16/07/360_F_232160763_FuTBWDd981tvYEJFXpFZtolm8l4ct0Nz.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: auto auto auto;
+  
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.buttons{
+  padding: 1.1% 0px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 8px;
+  width: 100%;
+  opacity: 0.9;
+}
+
+/* Custom CSS for input fields */
+.custom-input {
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Add border radius for rounded corners */
+  padding: 8px; /* Add padding */
+  font-size: 16px; /* Adjust font size */
+  width: 100%; /* Make inputs full-width */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+/* Custom CSS for textareas */
+.custom-textarea {
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Add border radius for rounded corners */
+  padding: 8px; /* Add padding */
+  font-size: 16px; /* Adjust font size */
+  width: 100%; /* Make textarea full-width */
+  box-sizing: border-box; /* Include padding and border in the width */
+}

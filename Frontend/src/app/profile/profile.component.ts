@@ -10,18 +10,19 @@ import {
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ControllerComponent} from '../controller/controller.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [MatCardModule,MatInputModule,MatButtonModule, ReactiveFormsModule , 
+  imports: [HttpClientModule,MatCardModule,MatInputModule,MatButtonModule, ReactiveFormsModule , 
     MatIconModule,MatFormFieldModule,RouterOutlet, RouterLink, RouterLinkActive,
     ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router,private http : HttpClient) { }
 
   name : String = "";
   email : String = "";
@@ -46,14 +47,20 @@ export class ProfileComponent {
   controller = ControllerComponent.getInstance();
 
 
-  changeData(){
+  async changeData(){
     var newAddress = (<HTMLInputElement>document.getElementById("Address")).value;
     if (newAddress == ""){
       alert('Address cannot be null! Try again!');
     }
     else{
-      this.controller.updateUser(newAddress);
-      alert('User data has been updated');
+      var status : boolean = await this.controller.updateUser(newAddress,this.http);
+      if (status){
+        this.address = this.controller.user.address;
+        alert('User data has been updated');
+      }
+      else{
+        alert('An error occured while adding the product');
+      }
     }
   }
 

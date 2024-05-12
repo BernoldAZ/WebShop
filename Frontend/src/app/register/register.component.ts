@@ -15,6 +15,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ControllerComponent} from '../controller/controller.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -27,14 +28,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [MatCardModule,MatInputModule,MatButtonModule, ReactiveFormsModule , 
+  imports: [MatCardModule,MatInputModule,MatButtonModule, ReactiveFormsModule , HttpClientModule,
     MatIconModule,MatFormFieldModule,RouterOutlet, RouterLink, RouterLinkActive,
     ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router,private http : HttpClient) { }
 
   controller = ControllerComponent.getInstance();
 
@@ -49,7 +50,7 @@ export class RegisterComponent {
 
   matcher = new MyErrorStateMatcher();
 
-  createUser(){
+  async createUser(){
     var email = (<HTMLInputElement>document.getElementById("Email")).value;
     var pass = (<HTMLInputElement>document.getElementById("Password")).value;
     var name = (<HTMLInputElement>document.getElementById("Name")).value;
@@ -57,7 +58,7 @@ export class RegisterComponent {
     console.log('Email:', email);
     console.log('Password:', pass);
 
-    if (this.controller.registerUser(name,email,pass,address)){
+    if (await this.controller.registerUser(name,email,pass,address,this.http)){
       alert('User created succesfully');
       this.router.navigate(['/']);
     }

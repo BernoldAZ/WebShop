@@ -1,0 +1,87 @@
+<p>
+    <mat-toolbar color="primary">
+
+  
+      <mat-toolbar-row>
+        <span>Amazon II</span>
+        <span class="example-spacer"></span>
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon color="warn">logout</mat-icon>
+              <span class="logout">Log out</span>
+            </button>
+          </mat-menu>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </p>
+
+<div class="login-container">
+    <mat-card class="login-card">
+      <mat-card-header>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" class="full-height"
+                                 (closed)="panelOpenState = false" >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Add new product
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <form >
+                <mat-label>Name: </mat-label>
+                <input matInput class="custom-input" id="newName" >
+
+                <mat-label>Description</mat-label>
+                <textarea matInput class="custom-textarea" id="newDescription"></textarea>
+
+                <mat-label>Price</mat-label>
+                <input matInput class="custom-input" id="newPrice">
+
+                <mat-label>Stock</mat-label>
+                <input matInput class="custom-input" id="newStock">
+
+                <mat-label>Photo</mat-label>
+                <input matInput class="custom-input" id="newPhoto">
+                <mat-divider class="margin-bot" [inset]="true"></mat-divider>
+                <button mat-flat-button type='button' class="buttons" mat-button color="primary" (click)="addProduct()" >Add</button>
+              </form>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <h1 class="margin-top"> Inventary </h1>
+          <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" class="full-height" *ngFor="let item of items"
+                                 (closed)="panelOpenState = false" >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{item.name}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <form >
+                <mat-label>Name: </mat-label>
+                <input matInput class="custom-input" id="{{item.id.toString() + 'Name'}}"value="{{item.name}}">
+
+                <mat-label>Description</mat-label>
+                <textarea matInput class="custom-textarea" id="{{item.id.toString() + 'Description'}}" value="{{item.description}}"></textarea>
+
+                <mat-label>Price</mat-label>
+                <input matInput class="custom-input" id="{{item.id.toString() + 'Price'}}" value="{{item.price}}">
+
+                <mat-label>Stock</mat-label>
+                <input matInput class="custom-input" id="{{item.id.toString() + 'Stock'}}" value="{{item.stock}}">
+
+                <mat-label>Photo</mat-label>
+                <input matInput class="custom-input" id="{{item.id.toString() + 'Photo'}}" value="{{item.photo}}">
+                <mat-divider class="margin-bot" [inset]="true"></mat-divider>
+                <button mat-flat-button type='button'   mat-button color="warn"(click)="removeProduct(item)">Delete</button>
+                <button mat-flat-button type='button'  mat-button color="primary" (click)="editProduct(item.id)" >Update</button>
+              </form>
+            </mat-expansion-panel>
+          </mat-accordion>
+      </mat-card-content>
+    </mat-card>
+  </div>

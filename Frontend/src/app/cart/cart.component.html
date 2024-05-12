@@ -1,4 +1,5 @@
-<div class="login-container">
+<div class="bg">
+  <div class="login-container">
     <mat-card class="login-card">
       <mat-card-header>
         <mat-card-title>
@@ -16,7 +17,7 @@
                     Quantity: {{item.quantity}}
                 </span >
                 <span matListItemLine>
-                    Price: {{item.price}}
+                    Price: {{item.price}} €
                 </span >
                 <button mat-button color="warn"(click)="remove(item)">Delete</button>
                 <mat-divider [inset]="true"></mat-divider>
@@ -26,3 +27,4 @@
       </mat-card-content>
     </mat-card>
   </div>
+</div>

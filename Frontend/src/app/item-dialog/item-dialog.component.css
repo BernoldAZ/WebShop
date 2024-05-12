@@ -2,3 +2,24 @@
     width: 75%;
     height: 75%;
   }
+
+  .buttons{
+    padding: 1.1% 0px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 8px;
+    width: 100%;
+    opacity: 0.9;
+  }
+
+  .left{
+    margin-left: auto;
+  }
+
+  .header-row {
+    display: flex;
+  }
+  
+  .header-row h2 {
+    margin-right: 20px; /* Adjust spacing between headers */
+  }

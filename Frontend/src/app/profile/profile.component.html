@@ -1,4 +1,5 @@
-<div class="login-container">
+<div class="bg">
+  <div class="login-container">
     <mat-card class="login-card">
       <mat-card-header>
         <mat-card-title>
@@ -8,7 +9,7 @@
       </mat-card-header>
       <mat-card-content>
         <form >
-            <mat-form-field >
+            <mat-form-field class="example-full-width">
               <mat-label>Full Name</mat-label>
               <input matInput  id="Name" matInput value="{{name}}" disabled>
 
@@ -17,17 +18,18 @@
                 <mat-label>Email</mat-label>
                 <input type="email" id="Email" matInput value="{{email}}" disabled>
               </mat-form-field>
-            <mat-form-field >
+            <mat-form-field class="example-full-width">
             <mat-label>Address</mat-label>
             <input matInput  id="Address"  value="{{address}}">
 
             </mat-form-field>
           </form>
           <div>
-            <button mat-button color="primary" (click)="changeData()" >
+            <button mat-flat-button class="buttons" color="primary" (click)="changeData()" >
                 Submit
             </button>
           </div>
       </mat-card-content>
     </mat-card>
   </div>
+</div>

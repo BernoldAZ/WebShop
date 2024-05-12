@@ -40,17 +40,22 @@ export class CartComponent {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
-      height: '400px',
-      width: '600px',
-    },
-  );
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result){
-        this.router.navigate(['/main']);
-      }
-    });
+    if(this.cart.length == 0){
+      alert('Cart is empty');
+    }
+    else{
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
+          height: '400px',
+          width: '600px',
+        },
+      );
+    
+        dialogRef.afterClosed().subscribe(result => {
+          if (result){
+            this.router.navigate(['/main']);
+          }
+        });
+    }
   }
 
 }
