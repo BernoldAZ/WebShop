@@ -30,6 +30,7 @@ export class HistoryComponent {
       this.router.navigate(['/']);
     }
     this.history = await this.controller.getHistory(this.http);
+    console.log(this.history);
   }
 
 }

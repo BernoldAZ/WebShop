@@ -31,6 +31,8 @@ export class ControllerComponent {
   cart : CartProduct[] = [];
   products : Product[] = [];
   items_cart : number = 0;
+  orderDate = '';
+  total = 0;
 
 
 
@@ -54,12 +56,12 @@ export class ControllerComponent {
     }
   }
 
-  async orderConfirmed(date : string,total : number,http : HttpClient){
+  async orderConfirmed(http : HttpClient){
     //submit to backend
     const url = 'http://localhost:8080/addhistory';
     const requestBody = new URLSearchParams();
-    requestBody.append('date', date);
-    requestBody.append('total', total.toString());
+    requestBody.append('date', this.orderDate);
+    requestBody.append('total', this.total.toString());
     requestBody.append('user_name', this.user.name);
     requestBody.append('email', this.user.email);
     requestBody.append('address', this.user.address);
@@ -72,7 +74,6 @@ export class ControllerComponent {
         }
       });
       await lastValueFrom(promise);
-      
       this.cart = []
       this.items_cart = 0;
       return true;
@@ -85,7 +86,13 @@ export class ControllerComponent {
   async getHistory(http : HttpClient){
     //get history from backend for the user
     const url = 'http://localhost:8080/history';
-    return await lastValueFrom (http.get<Shoppings[]>(url));
+    const requestBody = new URLSearchParams();
+    requestBody.append('user', this.user.email);
+    return await lastValueFrom (http.post<Shoppings[]>(url, requestBody.toString(), {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }))
   }
 
   async addProduct(product : Product,http : HttpClient){

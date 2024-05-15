@@ -9,17 +9,18 @@ import { Product,CartProduct,User } from '../controller/interfaces';
 import { Router } from '@angular/router';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [MatCardModule,NgFor,MatButtonModule,MatDividerModule,MatListModule,MatDialogModule],
+  imports: [HttpClientModule,MatCardModule,NgFor,MatButtonModule,MatDividerModule,MatListModule,MatDialogModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
 
-  constructor(private router: Router, public dialog: MatDialog) { }
+  constructor(private router: Router, public dialog: MatDialog, private http : HttpClient) { }
 
   ngOnInit(){
     if( ! this.controller.checkLogedIn()){
@@ -39,7 +40,7 @@ export class CartComponent {
     this.cart = this.controller.cart;
   }
 
-  openDialog() {
+  async openDialog() {
     if(this.cart.length == 0){
       alert('Cart is empty');
     }
@@ -50,9 +51,14 @@ export class CartComponent {
         },
       );
     
-        dialogRef.afterClosed().subscribe(result => {
-          if (result){
+        dialogRef.afterClosed().subscribe(async result => {
+          let status = await this.controller.orderConfirmed(this.http);
+          if(status){
+            alert('Order confirmed');
             this.router.navigate(['/main']);
+          }
+          else{
+            alert('An error has occurred');
           }
         });
     }

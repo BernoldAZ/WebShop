@@ -33,7 +33,8 @@ export class ConfirmationDialogComponent {
   confirm(){
     console.log(this.cart);
     
-    this.controller.orderConfirmed(this.date.toLocaleString(),this.total,this.http);
+    this.controller.orderDate = this.date.toLocaleString();
+    this.controller.total = this.total;
   }
 
 }

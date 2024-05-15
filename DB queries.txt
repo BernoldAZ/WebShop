@@ -1,0 +1,34 @@
+CREATE TABLE "user" (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR,
+    email VARCHAR UNIQUE,
+    password VARCHAR;
+    address VARCHAR,
+    type INT
+);
+
+INSERT INTO "user" (name, email, address, type,password)
+VALUES ('admin', 'admin@admin', 'admin', 0,'admin');
+
+INSERT INTO "user" (name, email, address, type)
+VALUES ('user', 'user@user', 'gyor hungary', 1);
+
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR,
+    description VARCHAR,
+    price NUMERIC,
+    stock INT,
+    photo VARCHAR
+);
+
+CREATE TABLE history (
+    id SERIAL PRIMARY KEY,
+    date VARCHAR,
+    total NUMERIC,
+    user_name VARCHAR,
+    address VARCHAR,
+    user_email VARCHAR,
+    items TEXT, -- Storing JSON object array as a string
+    FOREIGN KEY (user_email) REFERENCES "user" (email)
+);
